@@ -1,0 +1,3 @@
+   DATE    START DURATION  DOWN    UP
+
+Remove Sensor and Scan: á
