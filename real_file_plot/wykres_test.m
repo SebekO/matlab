@@ -22,7 +22,7 @@ function varargout = wykres_test(varargin)
 
 % Edit the above text to modify the response to help wykres_test
 
-% Last Modified by GUIDE v2.5 09-Dec-2018 23:55:51
+% Last Modified by GUIDE v2.5 10-Dec-2018 18:57:02
 
 
 % Begin initialization code - DO NOT EDIT
@@ -52,8 +52,8 @@ function wykres_test_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to wykres_test (see VARARGIN)
-handles.Wybierz_czujnik='Wybierz czujnik';
-handles.Wybierz_paramtert='Wybierz paramtert';
+handles.Wybierz_czujnik='Select device';
+handles.Wybierz_paramtert='Select parameter';
 handles.DGS='DGS';
 handles.O3='O3';
 handles.CO='CO';
@@ -135,11 +135,13 @@ handles.serial_port = serial(pop_vl_9, 'BaudRate', 57600);
 
 if get(handles.popupmenu9,'Value')==1
     set(handles.text2, 'String', 'BEFORE PLOT! SELECT COM PORT', 'BackgroundColor', [1,0.41,0.16]);
-    set(handles.togglebutton9, 'Value', 0)
+    set(handles.togglebutton1, 'Value', 0)
+    return
 end
 if (get(handles.popupmenu9,'Value')~=1&&get(handles.popupmenu1,'Value')==1&&get(handles.popupmenu2,'Value')==1&&get(handles.popupmenu3,'Value')==1&&get(handles.popupmenu4,'Value')==1&&get(handles.popupmenu11,'Value')==1&&get(handles.popupmenu13,'Value')==1)
         set(handles.text2, 'String', 'BEFORE PLOT! CHOOSE AT LEAST ONE PARAMETER', 'BackgroundColor', [1,0.41,0.16]);
-        set(handles.togglebutton9, 'Value', 0)
+        set(handles.togglebutton1, 'Value', 0);
+        return
 end
 
 
@@ -154,6 +156,7 @@ for c = 1:6 %Initilize all your plots, for 4 pins
 end
 k=1;k2=1;k3=1;k4=1;k5=1;k6=1;
 
+set(handles.togglebutton1, 'BackgroundColor', 'r');
 tic
 while get(handles.togglebutton1, 'Value')
     odczyt_com = str2num(fscanf(handles.serial_port));
@@ -650,6 +653,8 @@ fclose(handles.serial_port);
 delete(handles.serial_port);
 clear handles.serial_port;
 set(handles.text2, 'String', 'NOW YOU CAN SAFELY CLOSE THE APPLICATION', 'BackgroundColor', [0.392,0.831,0.075]);
+set(handles.togglebutton1, 'BackgroundColor', [0.902,0.902,0.902]);
+
 
 
 
@@ -658,7 +663,7 @@ set(handles.text2, 'String', 'NOW YOU CAN SAFELY CLOSE THE APPLICATION', 'Backgr
 function popupmenu1_Callback(hObject, eventdata, handles)
 
 function popupmenu1_CreateFcn(hObject, eventdata, handles)
-set(hObject,'String','Wybierz paramtert');
+set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -668,7 +673,7 @@ end
 function popupmenu2_Callback(hObject, eventdata, handles)
 
 function popupmenu2_CreateFcn(hObject, eventdata, handles)
-set(hObject,'String','Wybierz paramtert');
+set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -678,7 +683,7 @@ end
 function popupmenu3_Callback(hObject, eventdata, handles)
 
 function popupmenu3_CreateFcn(hObject, eventdata, handles)
-set(hObject,'String','Wybierz paramtert');
+set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -686,7 +691,7 @@ end
 function popupmenu4_Callback(hObject, eventdata, handles)
 
 function popupmenu4_CreateFcn(hObject, eventdata, handles)
-set(hObject,'String','Wybierz paramtert');
+set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -714,7 +719,7 @@ pop_vl_5=strtrim(pop_st_5(get(handles.popupmenu5,'Value'),:));
  end
 
 function popupmenu5_CreateFcn(hObject, eventdata, handles)
-a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
 set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -744,7 +749,7 @@ pop_vl_6=strtrim(pop_st_6(get(handles.popupmenu6,'Value'),:));
  end
  
 function popupmenu6_CreateFcn(hObject, eventdata, handles)
-a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
 set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -774,7 +779,7 @@ pop_vl_7=strtrim(pop_st_7(get(handles.popupmenu7,'Value'),:));
  end
 
 function popupmenu7_CreateFcn(hObject, eventdata, handles)
-a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
 set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -804,7 +809,7 @@ pop_vl_8=strtrim(pop_st_8(get(handles.popupmenu8,'Value'),:));
  end
  
 function popupmenu8_CreateFcn(hObject, eventdata, handles)
-a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
 set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
@@ -821,40 +826,16 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on button press in togglebutton2.
 function togglebutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to togglebutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of togglebutton2
-
-
-% --- Executes on selection change in popupmenu11.
 function popupmenu11_Callback(hObject, eventdata, handles)
-% hObject    handle to popupmenu11 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu11 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu11
-
-
-% --- Executes during object creation, after setting all properties.
 function popupmenu11_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to popupmenu11 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
+set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on selection change in popupmenu12.
 function popupmenu12_Callback(hObject, eventdata, handles)
 set(handles.popupmenu11,'Value',1);
 pop_st_12=get(handles.popupmenu12,'String');
@@ -876,54 +857,25 @@ pop_vl_12=strtrim(pop_st_12(get(handles.popupmenu12,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu11,'String',s);
  end
-% hObject    handle to popupmenu12 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu12 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu12
-
-
-% --- Executes during object creation, after setting all properties.
 function popupmenu12_CreateFcn(hObject, eventdata, handles)
-a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
 set(hObject,'String',s);
-% hObject    handle to popupmenu12 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
-% --- Executes on selection change in popupmenu13.
+
 function popupmenu13_Callback(hObject, eventdata, handles)
-% hObject    handle to popupmenu13 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu13 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu13
-
-
-% --- Executes during object creation, after setting all properties.
 function popupmenu13_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to popupmenu13 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
+set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on selection change in popupmenu14.
 function popupmenu14_Callback(hObject, eventdata, handles)
 set(handles.popupmenu13,'Value',1);
 pop_st_14=get(handles.popupmenu14,'String');
@@ -945,31 +897,15 @@ pop_vl_14=strtrim(pop_st_14(get(handles.popupmenu14,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu13,'String',s);
  end
-% hObject    handle to popupmenu14 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu14 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu14
-
-
-% --- Executes during object creation, after setting all properties.
 function popupmenu14_CreateFcn(hObject, eventdata, handles)
-a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
 set(hObject,'String',s);
-% hObject    handle to popupmenu14 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
-
-% --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
 [filename, pathname] = uigetfile('*.txt;*.bin', 'Pick a data file');
 	if isequal(filename,0) || isequal(pathname,0);
@@ -1032,6 +968,7 @@ call_arr = splitlines(odczyt_plik);
 chr1 = char(call_arr);
 i=1;k=1;k2=1;k3=1;k4=1;k5=1;k6=1;
 set(handles.text2, 'String', 'WARNING! DO NOT CLOSE THE APPLICATION BEFORE END OF PLOTTING', 'BackgroundColor', 'r');
+tic
 while i<m
     g_line_data = sscanf(chr1(i,:),'%f')';
     switch pop_vl_5
@@ -1039,21 +976,21 @@ while i<m
             switch pop_vl_1
                 case handles.O3
                     if (g_line_data(1,1)==handles.O3n)
-                        x(k, 1) =g_line_data(1,4)
+                        x(k, 1) =g_line_data(1,4);
                         set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                         k=k+1;
                         drawnow;
                     end
                 case handles.CO
                     if (g_line_data(1,1)==handles.COn)
-                        x(k, 1) =g_line_data(1,4)
+                        x(k, 1) =g_line_data(1,4);
                         set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                         k=k+1;
                         drawnow;
                     end
                 case handles.SO2
                     if (g_line_data(1,1)==handles.SO2n)
-                        x(k, 1) =g_line_data(1,4)
+                        x(k, 1) =g_line_data(1,4);
                         set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                         k=k+1;
                         drawnow;
@@ -1063,22 +1000,22 @@ while i<m
             if (g_line_data(1,1)==handles.BME280n)
                 switch pop_vl_1
                     case handles.temperatura
-                            x(k, 1) =g_line_data(1,2)
+                            x(k, 1) =g_line_data(1,2);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
                     case handles.cisnienie
-                            x(k, 1) =g_line_data(1,3)
+                            x(k, 1) =g_line_data(1,3);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
                     case handles.wilgotnosc
-                            x(k, 1) =g_line_data(1,4)
+                            x(k, 1) =g_line_data(1,4);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
                     case handles.wysokosc
-                            x(k, 1) =g_line_data(1,5)
+                            x(k, 1) =g_line_data(1,5);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;  
@@ -1088,17 +1025,17 @@ while i<m
             if (g_line_data(1,1)==handles.AltIMUn)
                 switch pop_vl_1
                     case handles.temperatura
-                            x(k, 1) =g_line_data(1,2)
+                            x(k, 1) =g_line_data(1,2);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
                     case handles.cisnienie
-                            x(k, 1) =g_line_data(1,3)
+                            x(k, 1) =g_line_data(1,3);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
                     case handles.wysokosc
-                            x(k, 1) =g_line_data(1,4)
+                            x(k, 1) =g_line_data(1,4);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
@@ -1108,7 +1045,7 @@ while i<m
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_1
                     case handles.temperatura
-                            x(k, 1) =g_line_data(1,2)
+                            x(k, 1) =g_line_data(1,2);
                             set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                             k=k+1;
                             drawnow;
@@ -1120,21 +1057,21 @@ while i<m
             switch pop_vl_2
                 case handles.O3
                     if (g_line_data(1,1)==handles.O3n)
-                        x1(k2, 1) =g_line_data(1,4)
+                        x1(k2, 1) =g_line_data(1,4);
                         set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                         k2=k2+1;
                         drawnow;
                     end
                 case handles.CO
                     if (g_line_data(1,1)==handles.COn)
-                        x1(k2, 1) =g_line_data(1,4)
+                        x1(k2, 1) =g_line_data(1,4);
                         set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                         k2=k2+1;
                         drawnow;
                     end
                 case handles.SO2
                     if (g_line_data(1,1)==handles.SO2n)
-                        x1(k2, 1) =g_line_data(1,4)
+                        x1(k2, 1) =g_line_data(1,4);
                         set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                         k2=k2+1;
                         drawnow;
@@ -1144,22 +1081,22 @@ while i<m
             if (g_line_data(1,1)==handles.BME280n)
                 switch pop_vl_2
                     case handles.temperatura
-                            x1(k2, 1) =g_line_data(1,2)
+                            x1(k2, 1) =g_line_data(1,2);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
                     case handles.cisnienie
-                            x1(k2, 1) =g_line_data(1,3)
+                            x1(k2, 1) =g_line_data(1,3);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
                     case handles.wilgotnosc
-                            x1(k2, 1) =g_line_data(1,4)
+                            x1(k2, 1) =g_line_data(1,4);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
                     case handles.wysokosc
-                            x1(k2, 1) =g_line_data(1,5)
+                            x1(k2, 1) =g_line_data(1,5);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;  
@@ -1169,17 +1106,17 @@ while i<m
             if (g_line_data(1,1)==handles.AltIMUn)
                 switch pop_vl_2
                     case handles.temperatura
-                            x1(k2, 1) =g_line_data(1,2)
+                            x1(k2, 1) =g_line_data(1,2);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
                     case handles.cisnienie
-                            x1(k2, 1) =g_line_data(1,3)
+                            x1(k2, 1) =g_line_data(1,3);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
                     case handles.wysokosc
-                            x1(k2, 1) =g_line_data(1,4)
+                            x1(k2, 1) =g_line_data(1,4);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
@@ -1189,7 +1126,7 @@ while i<m
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_2
                     case handles.temperatura
-                            x1(k2, 1) =g_line_data(1,2)
+                            x1(k2, 1) =g_line_data(1,2);
                             set(Px(2), 'XData', 1:k2, 'YData', x1(1:k2, 1));
                             k2=k2+1;
                             drawnow;
@@ -1201,21 +1138,21 @@ while i<m
             switch pop_vl_3
                 case handles.O3
                     if (g_line_data(1,1)==handles.O3n)
-                        x2(k3, 1) =g_line_data(1,4)
+                        x2(k3, 1) =g_line_data(1,4);
                         set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                         k3=k3+1;
                         drawnow;
                     end
                 case handles.CO
                     if (g_line_data(1,1)==handles.COn)
-                        x2(k3, 1) =g_line_data(1,4)
+                        x2(k3, 1) =g_line_data(1,4);
                         set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                         k3=k3+1;
                         drawnow;
                     end
                 case handles.SO2
                     if (g_line_data(1,1)==handles.SO2n)
-                        x2(k3, 1) =g_line_data(1,4)
+                        x2(k3, 1) =g_line_data(1,4);
                         set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                         k3=k3+1;
                         drawnow;
@@ -1225,22 +1162,22 @@ while i<m
             if (g_line_data(1,1)==handles.BME280n)
                 switch pop_vl_3
                     case handles.temperatura
-                            x2(k3, 1) =g_line_data(1,2)
+                            x2(k3, 1) =g_line_data(1,2);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
                     case handles.cisnienie
-                            x2(k3, 1) =g_line_data(1,3)
+                            x2(k3, 1) =g_line_data(1,3);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
                     case handles.wilgotnosc
-                            x2(k3, 1) =g_line_data(1,4)
+                            x2(k3, 1) =g_line_data(1,4);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
                     case handles.wysokosc
-                            x2(k3, 1) =g_line_data(1,5)
+                            x2(k3, 1) =g_line_data(1,5);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;  
@@ -1250,17 +1187,17 @@ while i<m
             if (g_line_data(1,1)==handles.AltIMUn)
                 switch pop_vl_3
                     case handles.temperatura
-                            x2(k3, 1) =g_line_data(1,2)
+                            x2(k3, 1) =g_line_data(1,2);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
                     case handles.cisnienie
-                            x2(k3, 1) =g_line_data(1,3)
+                            x2(k3, 1) =g_line_data(1,3);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
                     case handles.wysokosc
-                            x2(k3, 1) =g_line_data(1,4)
+                            x2(k3, 1) =g_line_data(1,4);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
@@ -1270,7 +1207,7 @@ while i<m
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_3
                     case handles.temperatura
-                            x2(k3, 1) =g_line_data(1,2)
+                            x2(k3, 1) =g_line_data(1,2);
                             set(Px(3), 'XData', 1:k3, 'YData', x2(1:k3, 1));
                             k3=k3+1;
                             drawnow;
@@ -1282,21 +1219,21 @@ while i<m
             switch pop_vl_4
                 case handles.O3
                     if (g_line_data(1,1)==handles.O3n)
-                        x3(k4, 1) =g_line_data(1,4)
+                        x3(k4, 1) =g_line_data(1,4);
                         set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                         k4=k4+1;
                         drawnow;
                     end
                 case handles.CO
                     if (g_line_data(1,1)==handles.COn)
-                        x3(k4, 1) =g_line_data(1,4)
+                        x3(k4, 1) =g_line_data(1,4);
                         set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                         k4=k4+1;
                         drawnow;
                     end
                 case handles.SO2
                     if (g_line_data(1,1)==handles.SO2n)
-                        x3(k4, 1) =g_line_data(1,4)
+                        x3(k4, 1) =g_line_data(1,4);
                         set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                         k4=k4+1;
                         drawnow;
@@ -1306,22 +1243,22 @@ while i<m
             if (g_line_data(1,1)==handles.BME280n)
                 switch pop_vl_4
                     case handles.temperatura
-                            x3(k4, 1) =g_line_data(1,2)
+                            x3(k4, 1) =g_line_data(1,2);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
                     case handles.cisnienie
-                            x3(k4, 1) =g_line_data(1,3)
+                            x3(k4, 1) =g_line_data(1,3);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
                     case handles.wilgotnosc
-                            x3(k4, 1) =g_line_data(1,4)
+                            x3(k4, 1) =g_line_data(1,4);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
                     case handles.wysokosc
-                            x3(k4, 1) =g_line_data(1,5)
+                            x3(k4, 1) =g_line_data(1,5);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;  
@@ -1331,17 +1268,17 @@ while i<m
             if (g_line_data(1,1)==handles.AltIMUn)
                 switch pop_vl_4
                     case handles.temperatura
-                            x3(k4, 1) =g_line_data(1,2)
+                            x3(k4, 1) =g_line_data(1,2);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
                     case handles.cisnienie
-                            x3(k4, 1) =g_line_data(1,3)
+                            x3(k4, 1) =g_line_data(1,3);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
                     case handles.wysokosc
-                            x3(k4, 1) =g_line_data(1,4)
+                            x3(k4, 1) =g_line_data(1,4);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
@@ -1351,7 +1288,7 @@ while i<m
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_4
                     case handles.temperatura
-                            x3(k4, 1) =g_line_data(1,2)
+                            x3(k4, 1) =g_line_data(1,2);
                             set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
                             k4=k4+1;
                             drawnow;
@@ -1363,21 +1300,21 @@ while i<m
             switch pop_vl_11
                 case handles.O3
                     if (g_line_data(1,1)==handles.O3n)
-                        x4(k5, 1) =g_line_data(1,4)
+                        x4(k5, 1) =g_line_data(1,4);
                         set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                         k5=k5+1;
                         drawnow;
                     end
                 case handles.CO
                     if (g_line_data(1,1)==handles.COn)
-                        x4(k5, 1) =g_line_data(1,4)
+                        x4(k5, 1) =g_line_data(1,4);
                         set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                         k5=k5+1;
                         drawnow;
                     end
                 case handles.SO2
                     if (g_line_data(1,1)==handles.SO2n)
-                        x4(k5, 1) =g_line_data(1,4)
+                        x4(k5, 1) =g_line_data(1,4);
                         set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                         k5=k5+1;
                         drawnow;
@@ -1387,22 +1324,22 @@ while i<m
             if (g_line_data(1,1)==handles.BME280n)
                 switch pop_vl_11
                     case handles.temperatura
-                            x4(k5, 1) =g_line_data(1,2)
+                            x4(k5, 1) =g_line_data(1,2);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
                     case handles.cisnienie
-                            x4(k5, 1) =g_line_data(1,3)
+                            x4(k5, 1) =g_line_data(1,3);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
                     case handles.wilgotnosc
-                            x4(k5, 1) =g_line_data(1,4)
+                            x4(k5, 1) =g_line_data(1,4);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
                     case handles.wysokosc
-                            x4(k5, 1) =g_line_data(1,5)
+                            x4(k5, 1) =g_line_data(1,5);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;  
@@ -1412,17 +1349,17 @@ while i<m
             if (g_line_data(1,1)==handles.AltIMUn)
                 switch pop_vl_11
                     case handles.temperatura
-                            x4(k5, 1) =g_line_data(1,2)
+                            x4(k5, 1) =g_line_data(1,2);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
                     case handles.cisnienie
-                            x4(k5, 1) =g_line_data(1,3)
+                            x4(k5, 1) =g_line_data(1,3);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
                     case handles.wysokosc
-                            x4(k5, 1) =g_line_data(1,4)
+                            x4(k5, 1) =g_line_data(1,4);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
@@ -1432,7 +1369,7 @@ while i<m
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_11
                     case handles.temperatura
-                            x4(k5, 1) =g_line_data(1,2)
+                            x4(k5, 1) =g_line_data(1,2);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                             drawnow;
@@ -1444,21 +1381,21 @@ while i<m
             switch pop_vl_13
                 case handles.O3
                     if (g_line_data(1,1)==handles.O3n)
-                        x5(k6, 1) =g_line_data(1,4)
+                        x5(k6, 1) =g_line_data(1,4);
                         set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                         k6=k6+1;
                         drawnow;
                     end
                 case handles.CO
                     if (g_line_data(1,1)==handles.COn)
-                        x5(k6, 1) =g_line_data(1,4)
+                        x5(k6, 1) =g_line_data(1,4);
                         set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                         k6=k6+1;
                         drawnow;
                     end
                 case handles.SO2
                     if (g_line_data(1,1)==handles.SO2n)
-                        x5(k6, 1) =g_line_data(1,4)
+                        x5(k6, 1) =g_line_data(1,4);
                         set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                         k6=k6+1;
                         drawnow;
@@ -1468,22 +1405,22 @@ while i<m
             if (g_line_data(1,1)==handles.BME280n)
                 switch pop_vl_13
                     case handles.temperatura
-                            x5(k6, 1) =g_line_data(1,2)
+                            x5(k6, 1) =g_line_data(1,2);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
                     case handles.cisnienie
-                            x5(k6, 1) =g_line_data(1,3)
+                            x5(k6, 1) =g_line_data(1,3);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
                     case handles.wilgotnosc
-                            x5(k6, 1) =g_line_data(1,4)
+                            x5(k6, 1) =g_line_data(1,4);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
                     case handles.wysokosc
-                            x5(k6, 1) =g_line_data(1,5)
+                            x5(k6, 1) =g_line_data(1,5);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;  
@@ -1493,17 +1430,17 @@ while i<m
             if (g_line_data(1,1)==handles.AltIMUn)
                 switch pop_vl_13
                     case handles.temperatura
-                            x5(k6, 1) =g_line_data(1,2)
+                            x5(k6, 1) =g_line_data(1,2);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
                     case handles.cisnienie
-                            x5(k6, 1) =g_line_data(1,3)
+                            x5(k6, 1) =g_line_data(1,3);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
                     case handles.wysokosc
-                            x5(k6, 1) =g_line_data(1,4)
+                            x5(k6, 1) =g_line_data(1,4);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
@@ -1513,7 +1450,7 @@ while i<m
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_13
                     case handles.temperatura
-                            x5(k6, 1) =g_line_data(1,2)
+                            x5(k6, 1) =g_line_data(1,2);
                             set(Px(6), 'XData', 1:k6, 'YData', x5(1:k6, 1));
                             k6=k6+1;
                             drawnow;
@@ -1522,4 +1459,5 @@ while i<m
     end
     i=i+1;
 end
+toc
 set(handles.text2, 'String', 'NOW YOU CAN SAFELY CLOSE THE APPLICATION', 'BackgroundColor', [0.392,0.831,0.075]);
