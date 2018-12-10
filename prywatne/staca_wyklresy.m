@@ -1,11 +1,49 @@
 clc
 clear
-[o, ErrM] = fopen ('a1.txt', 'r');
+[o, ErrM] = fopen ('all_para.txt', 'r');
 if(o == -1)
     warning(ErrM); 
     return;
 end;
-a = fscanf(o,'%f	%f	%f	%f	%f\n',[5, Inf])';
+    
+
+
+
+
+
+
+odczyt_plik = fscanf(o,'%c');
+
+A = splitlines(odczyt_plik);
+[m,n] = size(A);
+chr1 = char(A);
+i=1;
+while i<m
+    B = sscanf(chr1(i,:),'%f')';
+    B
+    i=i+1;
+end
+
+%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 b=[a(:,2),a(:,3),a(:,4),a(:,5)];
 fclose(o);
 

@@ -902,6 +902,26 @@ end
 
 % --- Executes on selection change in popupmenu13.
 function popupmenu13_Callback(hObject, eventdata, handles)
+set(handles.popupmenu13,'Value',1);
+pop_st_14=get(handles.popupmenu8,'String');
+pop_vl_14=strtrim(pop_st_14(get(handles.popupmenu8,'Value'),:));
+ switch pop_vl_14
+     case handles.Wybierz_czujnik
+        s=char(handles.Wybierz_paramtert);
+        set(handles.popupmenu13,'String',s);
+    case handles.DGS
+        s=char(handles.Wybierz_paramtert, handles.O3, handles.CO, handles.SO2, handles.H2S, handles.NO2);
+        set(handles.popupmenu13,'String',s);
+    case handles.BME280
+        s=char(handles.Wybierz_paramtert,handles.temperatura,handles.cisnienie,handles.wilgotnosc, handles.wysokosc);
+        set(handles.popupmenu13,'String',s);
+    case handles.AltIMU
+        s=char(handles.Wybierz_paramtert,handles.temperatura, handles.cisnienie, handles.wysokosc);
+        set(handles.popupmenu13,'String',s);
+    case handles.Termopara
+        s=char(handles.Wybierz_paramtert, handles.temperatura);
+        set(handles.popupmenu13,'String',s);
+ end
 % hObject    handle to popupmenu13 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -912,6 +932,9 @@ function popupmenu13_Callback(hObject, eventdata, handles)
 
 % --- Executes during object creation, after setting all properties.
 function popupmenu13_CreateFcn(hObject, eventdata, handles)
+a='Wybierz czujnik';b='DGS';c='BME280';d='AltIMU';e='Termopara';
+s=char(a,b,c,d,e);
+set(hObject,'String',s);
 % hObject    handle to popupmenu13 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -926,8 +949,8 @@ end
 % --- Executes on selection change in popupmenu14.
 function popupmenu14_Callback(hObject, eventdata, handles)
 set(handles.popupmenu13,'Value',1);
-pop_st_14=get(handles.popupmenu14,'String');
-pop_vl_14=strtrim(pop_st_14(get(handles.popupmenu14,'Value'),:));
+pop_st_14=get(handles.popupmenu8,'String');
+pop_vl_14=strtrim(pop_st_14(get(handles.popupmenu8,'Value'),:));
  switch pop_vl_14
      case handles.Wybierz_czujnik
         s=char(handles.Wybierz_paramtert);
