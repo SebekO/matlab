@@ -4,35 +4,9 @@ Sebastian Owarzany
 Technical Physics
 Faculty of Physics and Applied Computer Science
 AGH University of Science and Technology
+https://github.com/SebekO
 %}
 function varargout = wykres_test(varargin)
-% WYKRES_TEST MATLAB code for wykres_test.fig
-%      WYKRES_TEST, by itself, creates a new WYKRES_TEST or raises the existing
-%      singleton*.
-%
-%      H = WYKRES_TEST returns the handle to a new WYKRES_TEST or the handle to
-%      the existing singleton*.
-%
-%      WYKRES_TEST('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in WYKRES_TEST.M with the given input arguments.
-%
-%      WYKRES_TEST('Property','Value',...) creates a new WYKRES_TEST or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before wykres_test_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to wykres_test_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
-
-% Edit the above text to modify the response to help wykres_test
-
-% Last Modified by GUIDE v2.5 12-Dec-2018 16:27:34
-
-
-% Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -49,113 +23,81 @@ if nargout
 else
     gui_mainfcn(gui_State, varargin{:});
 end
-% End initialization code - DO NOT EDIT
-
-
-% --- Executes just before wykres_test is made visible.
 function wykres_test_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to wykres_test (see VARARGIN)
-handles.Wybierz_czujnik='Select device';
-handles.Wybierz_paramtert='Select parameter';
-handles.DGS='DGS';
-handles.O3='O3';
-handles.CO='CO';
-handles.SO2='SO2';
-handles.H2S='H2S';
-handles.NO2='NO2';
-handles.BME280='BME280';
-handles.temperatura='temperatura';
-handles.cisnienie='ciÅ›nienie';
-handles.wilgotnosc='wilgotnoÅ›Ä‡';
-handles.wysokosc='wysokoÅ›Ä‡';
-handles.AltIMU='AltIMU';
-handles.akceleracja='akceleracja';
-handles.magnetometr='magnetometr';
-handles.zyroskop='Å¼yroskop';
-handles.Termopara='Termopara';
-
-handles.O3n=061318011028;
-handles.SO2n=082918010321;
-handles.COn=102617010931;
-handles.NO2n=112917010455;
-handles.H2Sn=081417020357;
-handles.AltIMUn=651081167785;
-handles.BME280n=667769;
-handles.An=65;
-handles.Gn=71;
-handles.Mn=77;
-handles.Termoparan=84;
-
+handles.Wybierz_czujnik = 'Select device';
+handles.Wybierz_paramtert = 'Select parameter';
+handles.DGS = 'DGS';
+handles.O3 = 'O3';
+handles.CO = 'CO';
+handles.SO2 = 'SO2';
+handles.H2S = 'H2S';
+handles.NO2 = 'NO2';
+handles.BME280 = 'BME280';
+handles.temperatura = 'temperatura';
+handles.cisnienie = 'ciœnienie';
+handles.wilgotnosc = 'wilgotnoœæ';
+handles.wysokosc = 'wysokoœæ';
+handles.AltIMU = 'AltIMU';
+handles.akceleracja = 'akceleracja';
+handles.magnetometr = 'magnetometr';
+handles.zyroskop = '¿yroskop';
+handles.Termopara = 'Termopara';
+handles.O3n = 061318011028;
+handles.SO2n = 082918010321;
+handles.COn = 102617010931;
+handles.NO2n = 112917010455;
+handles.H2Sn = 081417020357;
+handles.AltIMUn = 651081167785;
+handles.BME280n = 667769;
+handles.An = 65;
+handles.Gn = 71;
+handles.Mn = 77;
+handles.Termoparan = 84;
+handles.alt = 220;
 set(handles.text3, 'Visible', 'off');
 set(handles.text4, 'Visible', 'off');
 set(handles.text5, 'Visible', 'off');
 set(handles.text6, 'Visible', 'off');
 set(handles.text7, 'Visible', 'off');
 set(handles.text8, 'Visible', 'off');
-% Choose default command line output for wykres_test
 handles.output = hObject;
-
-% Update handles structure
 guidata(hObject, handles);
-
-% UIWAIT makes wykres_test wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
-
-
-% --- Outputs from this function are returned to the command line.
 function varargout = wykres_test_OutputFcn(hObject, eventdata, handles) 
-
 varargout{1} = handles.output;
-
-
-
 function togglebutton1_Callback(hObject, eventdata, handles)
 pop_st_5=get(handles.popupmenu5,'String');
 pop_vl_5=strtrim(pop_st_5(get(handles.popupmenu5,'Value'),:));
 pop_st_1=get(handles.popupmenu1,'String');
 pop_vl_1=strtrim(pop_st_1(get(handles.popupmenu1,'Value'),:));
-
 pop_st_6=get(handles.popupmenu6,'String');
 pop_vl_6=strtrim(pop_st_6(get(handles.popupmenu6,'Value'),:));
 pop_st_2=get(handles.popupmenu2,'String');
 pop_vl_2=strtrim(pop_st_2(get(handles.popupmenu2,'Value'),:));
-
 pop_st_7=get(handles.popupmenu7,'String');
 pop_vl_7=strtrim(pop_st_7(get(handles.popupmenu7,'Value'),:));
 pop_st_3=get(handles.popupmenu3,'String');
 pop_vl_3=strtrim(pop_st_3(get(handles.popupmenu3,'Value'),:));
-
 pop_st_8=get(handles.popupmenu8,'String');
 pop_vl_8=strtrim(pop_st_8(get(handles.popupmenu8,'Value'),:));
 pop_st_4=get(handles.popupmenu4,'String');
 pop_vl_4=strtrim(pop_st_4(get(handles.popupmenu4,'Value'),:));
-
 pop_st_12=get(handles.popupmenu12,'String');
 pop_vl_12=strtrim(pop_st_12(get(handles.popupmenu12,'Value'),:));
 pop_st_11=get(handles.popupmenu11,'String');
 pop_vl_11=strtrim(pop_st_11(get(handles.popupmenu11,'Value'),:));
-
 pop_st_14=get(handles.popupmenu14,'String');
 pop_vl_14=strtrim(pop_st_14(get(handles.popupmenu14,'Value'),:));
 pop_st_13=get(handles.popupmenu13,'String');
 pop_vl_13=strtrim(pop_st_13(get(handles.popupmenu13,'Value'),:));
-
 pop_st_9=get(handles.popupmenu9,'String');
 pop_vl_9=strtrim(pop_st_9(get(handles.popupmenu9,'Value'),:));
-
 set(handles.text3, 'String', '0', 'Visible', 'on');
 set(handles.text4, 'String', '0', 'Visible', 'on');
 set(handles.text5, 'String', '0', 'Visible', 'on');
 set(handles.text6, 'String', '0', 'Visible', 'on');
 set(handles.text7, 'String', '0', 'Visible', 'on');
 set(handles.text8, 'String', '0', 'Visible', 'on');
-
 handles.serial_port = serial(pop_vl_9, 'BaudRate', 57600);
-
 if get(handles.popupmenu9,'Value')==1
     set(handles.text2, 'String', 'BEFORE PLOT! SELECT COM PORT', 'BackgroundColor', [1,0.41,0.16]);
     set(handles.togglebutton1, 'Value', 0)
@@ -166,7 +108,6 @@ if (get(handles.popupmenu9,'Value')~=1&&get(handles.popupmenu1,'Value')==1&&get(
         set(handles.togglebutton1, 'Value', 0);
         return
 end
-
 cla;
 fopen(handles.serial_port);
 set(handles.text2, 'String', 'WARNING! DO NOT CLOSE THE APPLICATION BEFORE CLOSE COM PORT', 'BackgroundColor', 'r');
@@ -177,7 +118,6 @@ end
 k=1;k2=1;k3=1;k4=1;k5=1;k6=1;
 set(handles.togglebutton1,'String', 'CLOSE COM PORT', 'BackgroundColor', [1,0.41,0.16]);
 set(handles.pushbutton1,'Enable', 'off');
-
 tic
 while get(handles.togglebutton1, 'Value')
     odczyt_com = str2num(fscanf(handles.serial_port));
@@ -559,24 +499,24 @@ while get(handles.togglebutton1, 'Value')
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                     case handles.wysokosc
-                            x4(k5, 1) =odczyt_com(1,5);
+                            x4(k5, 1) = odczyt_com(1,5);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
-                            k5=k5+1;
+                            k5 = k5+1;
                 end
             end
         case handles.AltIMU
-            if (odczyt_com(1,1)==handles.AltIMUn)
+            if (odczyt_com(1,1) == handles.AltIMUn)
                 switch pop_vl_11
                     case handles.temperatura
-                            x4(k5, 1) =odczyt_com(1,2);
+                            x4(k5, 1) = odczyt_com(1,2);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                     case handles.cisnienie
-                            x4(k5, 1) =odczyt_com(1,3);
+                            x4(k5, 1) = odczyt_com(1,3);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                     case handles.wysokosc
-                            x4(k5, 1) =odczyt_com(1,4);
+                            x4(k5, 1) = odczyt_com(1,4);
                             set(Px(5), 'XData', 1:k5, 'YData', x4(1:k5, 1));
                             k5=k5+1;
                 end
@@ -682,7 +622,6 @@ while get(handles.togglebutton1, 'Value')
     set(handles.text8, 'String', x5);
 end
 toc
-
 fclose(handles.serial_port);
 delete(handles.serial_port);
 clear handles.serial_port;
@@ -695,50 +634,30 @@ set(handles.text5, 'Visible', 'off');
 set(handles.text6, 'Visible', 'off');
 set(handles.text7, 'Visible', 'off');
 set(handles.text8, 'Visible', 'off');
-
-
-
-
-
-
-
-
 function popupmenu1_Callback(hObject, eventdata, handles)
-
 function popupmenu1_CreateFcn(hObject, eventdata, handles)
 set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
 function popupmenu2_Callback(hObject, eventdata, handles)
-
 function popupmenu2_CreateFcn(hObject, eventdata, handles)
 set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
 function popupmenu3_Callback(hObject, eventdata, handles)
-
 function popupmenu3_CreateFcn(hObject, eventdata, handles)
 set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu4_Callback(hObject, eventdata, handles)
-
 function popupmenu4_CreateFcn(hObject, eventdata, handles)
 set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu5_Callback(hObject, eventdata, handles)
 set(handles.popupmenu1,'Value',1);
 pop_st_5=get(handles.popupmenu5,'String');
@@ -760,7 +679,6 @@ pop_vl_5=strtrim(pop_st_5(get(handles.popupmenu5,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu1,'String',s);
  end
-
 function popupmenu5_CreateFcn(hObject, eventdata, handles)
 a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
@@ -768,7 +686,6 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu6_Callback(hObject, eventdata, handles)
 set(handles.popupmenu2,'Value',1);
 pop_st_6=get(handles.popupmenu6,'String');
@@ -790,7 +707,6 @@ pop_vl_6=strtrim(pop_st_6(get(handles.popupmenu6,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu2,'String',s);
  end
- 
 function popupmenu6_CreateFcn(hObject, eventdata, handles)
 a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
@@ -798,7 +714,6 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu7_Callback(hObject, eventdata, handles)
 set(handles.popupmenu3,'Value',1);
 pop_st_7=get(handles.popupmenu7,'String');
@@ -820,7 +735,6 @@ pop_vl_7=strtrim(pop_st_7(get(handles.popupmenu7,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu3,'String',s);
  end
-
 function popupmenu7_CreateFcn(hObject, eventdata, handles)
 a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
@@ -828,7 +742,6 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu8_Callback(hObject, eventdata, handles)
 set(handles.popupmenu4,'Value',1);
 pop_st_8=get(handles.popupmenu8,'String');
@@ -850,7 +763,6 @@ pop_vl_8=strtrim(pop_st_8(get(handles.popupmenu8,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu4,'String',s);
  end
- 
 function popupmenu8_CreateFcn(hObject, eventdata, handles)
 a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
@@ -858,9 +770,7 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu9_Callback(hObject, eventdata, handles)
-
 function popupmenu9_CreateFcn(hObject, eventdata, handles)
 a='Select COM';b=char(seriallist');
 s=char(a,b);
@@ -868,17 +778,13 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function togglebutton2_Callback(hObject, eventdata, handles)
-
 function popupmenu11_Callback(hObject, eventdata, handles)
-
 function popupmenu11_CreateFcn(hObject, eventdata, handles)
 set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu12_Callback(hObject, eventdata, handles)
 set(handles.popupmenu11,'Value',1);
 pop_st_12=get(handles.popupmenu12,'String');
@@ -900,7 +806,6 @@ pop_vl_12=strtrim(pop_st_12(get(handles.popupmenu12,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu11,'String',s);
  end
-
 function popupmenu12_CreateFcn(hObject, eventdata, handles)
 a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
@@ -908,17 +813,12 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
 function popupmenu13_Callback(hObject, eventdata, handles)
-
 function popupmenu13_CreateFcn(hObject, eventdata, handles)
 set(hObject,'String','Select parameter');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function popupmenu14_Callback(hObject, eventdata, handles)
 set(handles.popupmenu13,'Value',1);
 pop_st_14=get(handles.popupmenu14,'String');
@@ -940,7 +840,6 @@ pop_vl_14=strtrim(pop_st_14(get(handles.popupmenu14,'Value'),:));
         s=char(handles.Wybierz_paramtert, handles.temperatura);
         set(handles.popupmenu13,'String',s);
  end
-
 function popupmenu14_CreateFcn(hObject, eventdata, handles)
 a='Select device';b='DGS';c='BME280';d='AltIMU';e='Termopara';
 s=char(a,b,c,d,e);
@@ -948,7 +847,6 @@ set(hObject,'String',s);
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
 function pushbutton1_Callback(hObject, eventdata, handles)
 [filename, pathname] = uigetfile('*.txt;*.bin', 'Pick a data file');
 	if isequal(filename,0) || isequal(pathname,0);
@@ -988,8 +886,8 @@ if (get(handles.popupmenu1,'Value')==1&&get(handles.popupmenu2,'Value')==1&&get(
 	return;
 end
 Px = gobjects(1, 6); 
-for c = 1:6 %Initilize all your plots, for 4 pins
-    Px(c) = plot(handles.(['axes' num2str(c)]), 0, 'LineWidth', 2); %Store your plot handles
+for c = 1:6 %Initilize all your plots, for 6 pins
+    Px(c) = plot(handles.(['axes' num2str(c)]), 0, '.'); %Store your plot handles
 end
     [o, ErrM] = fopen (filename, 'r');
         if(o == -1)
@@ -1001,28 +899,37 @@ set(handles.togglebutton1,'Enable', 'off');
 set(handles.pushbutton1,'Enable', 'off');
 odczyt_plik = fscanf(o,'%c');
 call_arr = splitlines(odczyt_plik);
-[m,n] = size(call_arr);
+[m,n] = size(call_arr)
 chr1 = char(call_arr);
-i=1;k=1;k2=1;k3=1;k4=1;k5=1;k6=1;
-x=zeros(m(1),n(1));x1=zeros(m(1),n(1));x2=zeros(m(1),n(1));x3=zeros(m(1),n(1));x4=zeros(m(1),n(1));x5=zeros(m(1),n(1));
+m = m / 8
+i=1;k=1;k2=1;k3=1;k4=1;k5=1;k6=1;k7=1;
+x=zeros(m,n);x1=zeros(m,n);x2=zeros(m,n);x3=zeros(m,n);x4=zeros(m,n);x5=zeros(m,n);
+handles.alt = zeros(m,n);
 tic
-while i<m(1)
+while i < (m * 8)
     if get(handles.pushbutton2,'Value')
-      return  
-    end  
+      return
+    end
     g_line_data = sscanf(chr1(i,:),'%f')';
+    if (g_line_data(1,1) == handles.BME280n)
+        handles.alt(k7, 1) = g_line_data(1,5);
+        handles.alt(1, 1) = 200;
+        k7=k7+1;
+    end
     switch pop_vl_5
         case handles.DGS
             switch pop_vl_1
                 case handles.O3
-                    if (g_line_data(1,1)==handles.O3n)
-                        x(k, 1) =g_line_data(1,2);
-                        set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
+                    if (g_line_data(1,1) == handles.O3n)
+                        x(k, 1) = g_line_data(1,2);
+                        handles.alt
+                        x
+                        set(Px(1), 'XData', handles.alt(1:k, 1), 'YData', x(1:k, 1));
                         k=k+1;
                     end
                 case handles.CO
-                    if (g_line_data(1,1)==handles.COn)
-                        x(k, 1) =g_line_data(1,2);
+                    if (g_line_data(1,1) == handles.COn)
+                        x(k, 1) = g_line_data(1,2);
                         set(Px(1), 'XData', 1:k, 'YData', x(1:k, 1));
                         k=k+1;
                     end
@@ -1333,9 +1240,9 @@ while i<m(1)
             if (g_line_data(1,1)==handles.Termoparan)
                 switch pop_vl_4
                     case handles.temperatura
-                            x3(k4, 1) =g_line_data(1,2);
-                            set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
-                            k4=k4+1;  
+                    	x3(k4, 1) =g_line_data(1,2);
+                    	set(Px(4), 'XData', 1:k4, 'YData', x3(1:k4, 1));
+                     	k4=k4+1;  
                 end
             end
     end
@@ -1505,11 +1412,10 @@ while i<m(1)
                 end
             end
     end
-    i=i+1;
+    i = i+1;
 end
 toc
 set(handles.text2, 'String', 'NOW YOU CAN SAFELY CLOSE THE APPLICATION', 'BackgroundColor', [0.392,0.831,0.075]);
 set(handles.pushbutton1,'Enable', 'on');
 set(handles.togglebutton1,'Enable', 'on');
-
 function pushbutton2_Callback(hObject, eventdata, handles)
