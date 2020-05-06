@@ -97,6 +97,7 @@ set(handles.text5, 'String', '0', 'Visible', 'on');
 set(handles.text6, 'String', '0', 'Visible', 'on');
 set(handles.text7, 'String', '0', 'Visible', 'on');
 set(handles.text8, 'String', '0', 'Visible', 'on');
+x=zeros();x1=zeros();x2=zeros();x3=zeros();x4=zeros();x5=zeros();
 handles.serial_port = serial(pop_vl_9, 'BaudRate', 57600);
 if get(handles.popupmenu9,'Value')==1
     set(handles.text2, 'String', 'BEFORE PLOT! SELECT COM PORT', 'BackgroundColor', [1,0.41,0.16]);
